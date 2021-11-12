@@ -25,81 +25,14 @@ class User
         return $this->age;
     }
 }
-
-
-class Worker extends User
+class Builder extends User
 {
-
-private $salary;
-
-public function setSalary($salary) {
-    $this->salary = $salary;
-}
-public function getSalary() {
-    return $this->salary;
-}
-}
-
-
-class Student extends Worker
-{
-    private $stipendia;
-    private $kyrs;
-
-
-    public function getStipendia()
+    public static $counter = 0;
+    public static function counter()
     {
-        return $this->stipendia;
+        echo ("Число пользователей: ". ++self::$counter . "<br/>");
     }
 
-    public function setStipendia($stipendia)
-    {
-        $this->stipendia = $stipendia;
-    }
-    public function getKyrs()
-    {
-        return $this->kyrs;
-    }
-
-    public function setKyrs($kyrs)
-    {
-        $this->kyrs = $kyrs;
-    }
 }
-
-class Driver extends Student{
-    private $driving, $category;
-    public function setDriving($driving){
-        $this->driving = $driving;
-    }
-
-    public function getDriving(){
-        return $this->driving;
-    }
-
-    public function setCategory($category){
-        $this->category = $category;
-    }
-
-    public function getCategory(){
-        return $this->category;
-    }
-}
-$ivan = new Driver();
-$ivan->setName('Ivan');
-$ivan->setAge(18);
-$ivan->setSalary(1000);
-$ivan->setStipendia(500);
-$ivan->setDriving(0);
-$ivan->setCategory('B');
-
-$vasya = new Driver();
-$vasya->setName('Vasya');
-$vasya->setAge(20);
-$vasya->setSalary(2000);
-$vasya->setStipendia(1000);
-$vasya->setDriving(2);
-$vasya->setCategory('B');
-
-$allsalary = $ivan->getSalary()+$vasya->getSalary();
-echo $allsalary;
+$builder = new Builder();
+$builder::counter();
