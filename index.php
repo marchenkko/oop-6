@@ -1,27 +1,105 @@
 <?php
-//echo 'hello'; test commit and push
+
 class User
 {
-    public $name;
-    public $age;
-    public $sex;
+    protected $name;
+    protected $age;
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setAge($age)
+    {
+        $this->age = $age;
+    }
+
+    public function getAge()
+    {
+        return $this->age;
+    }
 }
 
-$user1 = new User();
-$user1->name = 'Dima';
-$user1->age = 20;
-$user1->sex = 'male';
 
-$user2 = new User();
-$user2->name = 'Marina';
-$user2->age = 15;
-$user2->sex = 'female';
+class Worker extends User
+{
 
-$user3 = new User();
-$user3->name = 'Artem';
-$user3->age = 31;
-$user3->sex = 'male';
+private $salary;
 
-echo 'name: ' . $user1->name . ', age: ' . $user1->age . ', sex: ' . $user1->sex . "\n";
-echo 'name: ' . $user2->name . ', age: ' . $user2->age . ', sex: ' . $user2->sex . "\n";
-echo 'name: ' . $user3->name . ', age: ' . $user3->age . ', sex: ' . $user3->sex . "\n";
+public function setSalary($salary) {
+    $this->salary = $salary;
+}
+public function getSalary() {
+    return $this->salary;
+}
+}
+
+
+class Student extends Worker
+{
+    private $stipendia;
+    private $kyrs;
+
+
+    public function getStipendia()
+    {
+        return $this->stipendia;
+    }
+
+    public function setStipendia($stipendia)
+    {
+        $this->stipendia = $stipendia;
+    }
+    public function getKyrs()
+    {
+        return $this->kyrs;
+    }
+
+    public function setKyrs($kyrs)
+    {
+        $this->kyrs = $kyrs;
+    }
+}
+
+class Driver extends Student{
+    private $driving, $category;
+    public function setDriving($driving){
+        $this->driving = $driving;
+    }
+
+    public function getDriving(){
+        return $this->driving;
+    }
+
+    public function setCategory($category){
+        $this->category = $category;
+    }
+
+    public function getCategory(){
+        return $this->category;
+    }
+}
+$ivan = new Driver();
+$ivan->setName('Ivan');
+$ivan->setAge(18);
+$ivan->setSalary(1000);
+$ivan->setStipendia(500);
+$ivan->setDriving(0);
+$ivan->setCategory('B');
+
+$vasya = new Driver();
+$vasya->setName('Vasya');
+$vasya->setAge(20);
+$vasya->setSalary(2000);
+$vasya->setStipendia(1000);
+$vasya->setDriving(2);
+$vasya->setCategory('B');
+
+$allsalary = $ivan->getSalary()+$vasya->getSalary();
+echo $allsalary;
