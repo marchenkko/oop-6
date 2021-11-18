@@ -5,34 +5,35 @@ class User
     protected $name;
     protected $age;
 
-    public function setName($name)
+    public function __construct($name, $age)
     {
+        echo "Initialising the object... \n";
         $this->name = $name;
-    }
+        $this->age = $age;
 
+    }
     public function getName()
     {
         return $this->name;
-    }
-
-    public function setAge($age)
-    {
-        $this->age = $age;
     }
 
     public function getAge()
     {
         return $this->age;
     }
-}
-class Builder extends User
-{
-    public static $counter = 0;
-    public static function counter()
+
+    public function __toString()
     {
-        echo ("Число пользователей: ". ++self::$counter . "<br/>");
+        return $this->getName();
     }
 
+    public function __destruct(){
+        echo "Destroying Object... \n";
+    }
 }
-$builder = new Builder();
-$builder::counter();
+$user1 = new User('Mike', 19);
+echo 'Name: ' . $user1->getName() . ', Age: ' . $user1->getAge() . "\n";
+
+
+
+
