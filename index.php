@@ -1,6 +1,8 @@
 <?php
-
-abstract class Figure
+interface str{
+    public function __toString();
+}
+abstract class Figure implements str
 {
     public function __toString(){
     return $this->getName() . " " . $this->getPerimeter() . " " . $this->getArea() ;
