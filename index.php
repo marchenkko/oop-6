@@ -1,96 +1,20 @@
 <?php
-interface str{
-    public function __toString();
-}
-abstract class Figure implements str
-{
-    public function __toString(){
-    return $this->getName() . " " . $this->getPerimeter() . " " . $this->getArea() ;
-    }
+spl_autoload_register(function ($class_name) {
+    include $class_name . '.php';
+});
+$user1 = new User();
+$user1->setName('Ivan');
+$user1->setAge(18);
 
-    abstract public function getName();
+$user2 = new User();
+$user2->setName('Nikita');
+$user2->setAge(28);
 
-    abstract public function getPerimeter();
+$user1 = (array) $user1 ;
+$user2 = (array) $user2 ;
+$users = [$user1,$user2];
 
-    abstract public function getArea();
-}
-class Rectangle extends Figure{
-    private $width;
-    private $height;
-
-    public function __construct($width,$height)
-    {
-        $this->width = $width;
-        $this->height = $height;
-    }
-
-    public function getName()
-    {
-        return 'Прямоугольник';
-    }
-
-    public function getPerimeter()
-    {
-        return ($this->width + $this->height) * 2;
-    }
-
-    public function getArea()
-    {
-        return $this->width * $this->height;
-    }
-}
-class Quadrate extends Figure {
-    private $side;
-
-    public function __construct($side)
-    {
-        $this->side = $side;
-    }
-
-    public function getName()
-    {
-        return 'Квадрат';
-    }
-
-    public function getPerimeter()
-    {
-        return $this->side * 4;
-    }
-
-    public function getArea()
-    {
-        return pow($this->side, 2);
-    }
-}
-
-class Circle extends Figure
-{
-    private $radius;
-
-    public function __construct($radius)
-    {
-
-        $this->radius = $radius;
-    }
-
-    public function getName()
-    {
-        return 'Круг';
-    }
-
-    public function getPerimeter()
-    {
-        return 2 * pi() * $this->radius;
-    }
-
-    public function getArea()
-    {
-        return 2 * pi() * pow($this->radius, 2);
-    }
-}
-
-$Rectangle = new Rectangle(10,10);
-$Quadrate = new Quadrate(10);
-$Circle = new Circle(10);
-echo $Rectangle . " | " . $Quadrate . " | ". $Circle;
+$user_1 = new Control();
+$user_1->filter($users);
+var_dump((array) $user_1);
 
